@@ -1,0 +1,244 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Yatra+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Yatra+One&display=swap');
+
+.yatra-one-regular {
+    font-family: "Yatra One", system-ui;
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* // <uniquifier>: Use a unique and descriptive class name
+  // <weight>: Use a value from 100 to 900 */
+
+.noto-sans {
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+    /* font-weight: 500; */
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+}
+
+/* Spinner */
+.spinner {
+    margin: 205px;
+    width: 50px;
+    height: 50px;
+    display: grid;
+    animation: s4 4s infinite;
+}
+
+.spinner::before,
+.spinner::after {
+    content: "";
+    grid-area: 1/1;
+    border: 8px solid;
+    border-radius: 50%;
+    border-color: #766DF4 #766DF4 #0000 #0000;
+    mix-blend-mode: darken;
+    animation: s4 1s infinite linear;
+}
+
+.spinner::after {
+    border-color: #0000 #0000 #E4E4ED #E4E4ED;
+    animation-direction: reverse;
+}
+
+@keyframes s4 {
+    100% {
+        transform: rotate(1turn)
+    }
+}
+
+
+/* Go Premium Button */
+@layer utilities {
+    .bg-gradient-premium {
+        background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF 100%);
+        background-size: 200% 100%;
+        animation: slidebg 4s linear infinite;
+    }
+
+    @keyframes slidebg {
+        0% {
+            background-position: 100% 50%;
+            /* Start from the right */
+        }
+
+        100% {
+            background-position: 0% 50%;
+            /* Move to the left */
+        }
+    }
+}
+
+
+/* Giggle Button */
+@layer components {
+    .playgiggle {
+        @apply relative text-white box-border z-10;
+        background-size: 400%;
+        animation: animate 8s linear infinite;
+    }
+
+    @keyframes animate {
+        0% {
+            background-position: 0%;
+        }
+
+        100% {
+            background-position: 400%;
+        }
+    }
+
+    .playgiggle:before {
+        content: "";
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        bottom: -5px;
+        left: -5px;
+        z-index: -1;
+        background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+        background-size: 400%;
+        filter: blur(20px);
+        opacity: 1;
+        animation: animate 8s linear infinite;
+        transition: .5s;
+    }
+}
+
+/* text button */
+@layer utilities {
+    .gradient-text {
+        background: radial-gradient(circle farthest-corner at center center, #FF1B7F 0%, #169BFF 28%, #FF22EA 63%, #490DF4 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        /* For non-webkit browsers */
+        /* text-fill-color: transparent; */
+        /* For non-webkit browsers */
+    }
+}
+
+/* New Button */
+@layer utilities {
+    .new-gradient {
+        --border-width: 3px;
+        position: relative;
+    }
+
+    .new-gradient:after {
+        content: '';
+        position: absolute;
+        top: calc(-1 * var(--border-width));
+        left: calc(-1 * var(--border-width));
+        height: calc(100% + var(--border-width) * 2);
+        width: calc(100% + var(--border-width) * 2);
+        background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+        border-radius: 30px;
+        z-index: -1;
+        animation: animatedgradient 3s ease alternate infinite;
+        background-size: 300% 300%;
+    }
+
+    @keyframes animatedgradient {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+}
+
+/* Card Border */
+@layer utilities {
+    .gradient-border {
+        --border-width: 4px;
+        position: relative;
+    }
+
+    .gradient-border:after {
+        content: '';
+        position: absolute;
+        top: calc(-1 * var(--border-width));
+        left: calc(-1 * var(--border-width));
+        height: calc(100% + var(--border-width) * 2);
+        width: calc(100% + var(--border-width) * 2);
+        background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+        border-radius: 6px;
+        z-index: -1;
+        animation: animatedgradient 3s ease alternate infinite;
+        background-size: 300% 300%;
+    }
+
+    @keyframes animatedgradient {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+}
+
+
+/* Custom Button Styles */
+.title {
+    @apply block cursor-pointer text-white mx-24 relative no-underline font-semibold rounded-lg overflow-hidden p-1.5 isolate text-center;
+}
+
+.title::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400%;
+    height: 100%;
+    background: linear-gradient(115deg, #4fcf70, #fad648, #a767e5, #12bcfe, #44ce7b);
+    background-size: 25% 100%;
+    animation: gradient-animation 0.75s linear infinite;
+    animation-play-state: paused;
+    transform: translateX(-5%);
+    transition: transform 0.25s ease-out;
+    animation-play-state: running;
+    transition-duration: 0.75s;
+    transform: translateX(0%);
+}
+
+/* .title:hover::before {
+    animation-play-state: running;
+    transition-duration: 0.75s;
+    transform: translateX(0%);
+  } */
+
+@keyframes gradient-animation {
+    to {
+        transform: translateX(-25%);
+    }
+}
+
+.title div {
+    @apply relative block text-lg bg-black rounded-md h-7;
+}
+
+/* .form-style {
+    @apply rounded-lg bg-richblack-700 p-3 text-[16px] leading-[24px] text-richblack-5 shadow-[0_1px_0_0] shadow-white/50 placeholder:text-richblack-400 focus:outline-none;
+  } */
